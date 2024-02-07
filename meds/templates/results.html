@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Medicine</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'list_css.css' %}">
+</head>
+<body>
+    {% if results %}
+    <div class="card-body">
+        <table class="table table-hover" border="1">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Medicine Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for med in results %}
+                    <tr>
+                        <!-- Display medicine information here -->
+                        <td>{{ med.id }}</td>
+                        <td>{{ med.name }}</td>
+                        <td>{{ med.description }}</td>
+                        <td>{{ med.price }}</td>
+                        <td>{{ med.category }}</td>
+                        <td>
+                            <a href="{% url 'updatemed' med.id %}" class="btn btn-secondary" value="edit" type="submit">Edit</a>
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+                                Delete
+                            </button>
+                            <div class="modal fade" id="myModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title text-warning">Warning...!!!!</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete {{ med.name }} ?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form method="POST" action="{% url 'delmed' med.id %}">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger">YES</button>
+                                            </form>
+                                            <button type="button" class="btn btn-success" data-dismiss="modal">NO</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="btn btn-outline-primary" href="{% url 'user' %}">Back</a>
+    </div>
+</div>
+</div>
+{% else %}
+    <h1>No Results Found</h1>
+    <a class="btn btn-outline-primary" href="{% url 'user' %}">Back</a>
+{% endif %}
+</body>
+</html>

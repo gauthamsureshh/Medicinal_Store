@@ -1,0 +1,9 @@
+<td>{{ med.id }}</td>
+                <td>{{ med.name }}</td>
+                <td>{{ med.description }}</td>
+                <td>{{ med.price }}</td>
+                <td>{{ med.category }}</td>
+                <td>
+                    <a href="{% url 'updatemed' med.id %}" class="btn btn-secondary" value="edit" type="submit">Edit</a>
+                    <a href="{% url 'delmed' med.id %}" class="btn btn-info" value="delete" type="submit">Delete</a>
+                </td>

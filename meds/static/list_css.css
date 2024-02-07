@@ -1,0 +1,12 @@
+body,html
+    {
+        background-image: url('pic1.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+.card{
+    margin: auto;
+    width: 650px;
+    background-color: rgba(220, 204, 204, 0.5);
+}
