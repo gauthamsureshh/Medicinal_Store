@@ -1,9 +1,37 @@
 {% extends 'layout/main.html' %}
 {% block 'content' %}
 
-{% include 'layout/nav.html' %}
-<h1 class="text-white-50">
-    WELCOME TO MEDICALS
-</h1>
+<style>
+    .container-fluid {
+        text-align: center;
+        margin-top: 25vh;
+        transform: translateY(-50%);
+    }
+
+    h1 {
+        color:rgba(45, 121, 214, 0.928);
+        font-weight: bold;
+    }
+
+    h5 {
+        color: rgba(210, 231, 30, 0.803);
+        font-weight: bold;
+    }
+
+    p {
+        color: rgba(239, 62, 31, 0.704);
+        font-weight: bold;
+    }
+</style>
+
+<div class="container-fluid">
+    <h1>Welcome to MediWare</h1>
+        <h5>Elevating Healthcare Through Seamless Management Solutions.</h5>
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'user' %}" style="color: rgb(35, 179, 95); font-weight: bolder;">Continue</a>
+        {% else %}
+        <p>Let Get Started <a href="{% url 'loginpage' %}">Login</a></p>
+        {% endif %}
+</div>
 
 {% endblock %}

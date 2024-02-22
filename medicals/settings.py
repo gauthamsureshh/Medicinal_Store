@@ -125,7 +125,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'medicals',#Name of the database created for this project
+        'NAME': 'enma_med',#Name of the database created for this project
         'USER': 'root',#Enter your mysql username
         'PASSWORD': '',#Enter your mysql password
         'HOST': 'localhost',
